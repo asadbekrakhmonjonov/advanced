@@ -26,23 +26,25 @@ class Room:
 
         shortest_person = min(self.persons_list, key=lambda x: x.height)
         return f"The shortest person is {shortest_person.name} with a height of {shortest_person.height}(cm)"
-
-
+    def remove_shortest(self):
+        if not self.persons_list:
+            return None
+        shortest_person = min(self.persons_list, key=lambda x: x.height)
+        self.persons_list.remove(shortest_person)
+        return shortest_person
 if __name__ == '__main__':
     room = Room()
-
-    print("Is the room empty?", room.is_empty())
-    print("Shortest:", room.shortest())
 
     room.add(Person("Lea", 183))
     room.add(Person("Kenya", 172))
     room.add(Person("Nina", 162))
     room.add(Person("Ally", 166))
+    room.print_contents()
 
     print()
 
-    print("Is the room empty?", room.is_empty())
-    print("Shortest:", room.shortest())
+    removed = room.remove_shortest()
+    print(f"Removed from room: {removed.name}")
 
     print()
 
